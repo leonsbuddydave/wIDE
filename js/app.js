@@ -1,0 +1,1 @@
+Wide = angular.module("Wide", []);
