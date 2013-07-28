@@ -54,7 +54,9 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 	var s = {
 
 		blockExceptions : [
-			"shift=true,ctrl=true,alt=false,keyCode=74"
+			"shift=true,ctrl=true,alt=false,keyCode=74",
+			"shift=false,ctrl=false,alt=false,keyCode=116",
+			"shift=false,ctrl=true,alt=false,keyCode=116"
 		],
 
 		keyState : {
@@ -76,7 +78,6 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 
 			EventDistributor.subscribe(ev, callback);
 
-			// debug
 			// EventDistributor.dumpEventCacheToConsole();
 		},
 
@@ -111,11 +112,12 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 		},
 
 		keydown : function(e) {
+			this.keyState.keyCode = e.which;
+			
 			this.overrideBrowserShortcuts(e);
 			this.handleSpecialKeys(e);
 
-			if (!this.isSpecial(e.which)) {
-				this.keyState.keyCode = e.which;
+			if ( !this.isSpecial(e.which) ) {
 				EventDistributor.publish( this.convertBindingToEventString(this.keyState) );
 			}
 
@@ -140,6 +142,8 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 			// and frankly probably shouldn't so...
 			// woo
 			var evString = this.convertBindingToEventString(this.keyState);
+
+			console.log(this.keyState);
 
 			if ($.inArray(evString, this.blockExceptions) !== -1) {
 				// it's in the exceptions list,

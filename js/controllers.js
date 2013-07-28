@@ -8,3 +8,15 @@ MainController = Wide.controller("MainController", function($scope, Keyboard) {
 	});
 
 });
+
+PaneSetController = Wide.controller("PaneSetController", function($scope, Keyboard) {
+
+	$scope.Panes = [{},{}];
+
+});
+
+PaneController = Wide.controller("PaneController", function($scope) {
+
+	$scope.Tabs = [];
+
+});
