@@ -16,12 +16,18 @@
 	<body ng-controller="MainController">
 		<div class="container pure-g" ng-controller="PaneSetController">
 			
-			<div ng-repeat="Pane in Panes" ng-controller="PaneController">
+			<div class="pane pure-u-1-{{Panes.length}}" ng-repeat="Pane in Panes" ng-controller="PaneController">
 
-				<div ng-repeat="Tab in Tabs">
-
+				<div class="tab-row">
+					<div class="tab" ng-repeat="Tab in Tabs" ng-controller="TabController">
+						{{Tab.name}}
+					</div>
 				</div>
-				
+
+				<canvas class="editor-canvas" ng-controller="CanvasEditorController">
+					
+				</canvas>
+
 			</div>
 
 		</div>
