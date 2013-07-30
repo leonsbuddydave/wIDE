@@ -21,7 +21,6 @@ EventDistributor = Wide.service("EventDistributor", function() {
 	}
 
 	this.publish = function(topic, args) {
-		console.log(topic);
 		$.each(eventCache, function(i, e) {
 			if (i === topic && typeof e !== 'undefined')
 			{
@@ -154,8 +153,6 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 			// woo
 			var evString = this.convertBindingToEventString(this.keyState);
 
-			console.log(this.keyState);
-
 			if ($.inArray(evString, this.blockExceptions) !== -1) {
 				// it's in the exceptions list,
 				// let it through
@@ -237,7 +234,7 @@ FileService = Wide.service("FileService", function(File) {
 	}
 
 	this.getFileById = function(id) {
-		
+		return this.files[id];
 	}
 
 	// returns a file, old or new

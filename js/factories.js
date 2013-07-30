@@ -34,13 +34,13 @@ File = Wide.factory("File", function() {
 	return File;
 });
 
-Tab = Wide.factory("Tab", function() {
+Tab = Wide.factory("Tab", function(FileService) {
 
 	var Tab = function(data) {
 		angular.extend(this, {
 
 			title : "Untitled",
-			file_id : -1
+			file_id : FileService.getFile()
 
 		});
 		angular.extend(this, data);

@@ -11,7 +11,9 @@ MainController = Wide.controller("MainController", function($scope, Keyboard) {
 
 PaneSetController = Wide.controller("PaneSetController", function($scope, Keyboard) {
 
-	$scope.Panes = [{},{}];
+	$scope.Panes = [{},{},{}];
+
+	$scope.Focused = 0;
 
 });
 
@@ -23,7 +25,6 @@ PaneController = Wide.controller("PaneController", function($scope, Tab, Keyboar
 	// takes an optional file id to open
 	// an existing file
 	$scope.NewTab = function(file_id) {
-		console.log("NEW TAB");
 		if (typeof file_id !== 'string') {
 			// no id, nope
 			$scope.Tabs.push( new Tab() );			
@@ -31,6 +32,8 @@ PaneController = Wide.controller("PaneController", function($scope, Tab, Keyboar
 		else {
 			// we'll have to load the file, fuck that for now
 		}
+
+		console.log($scope.Tabs);
 	}
 
 	Keyboard.bind(Preferences.keyboard_shortcuts.new_file, function() {
