@@ -186,3 +186,23 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 	// I will stab your glassy dead eyes
 	return s;
 });
+
+/*
+	Preferences - loads and manages anything
+	that might be customizable - including but
+	not limited to:
+		- Syntax Coloring
+		- Keyboard Shortcuts
+*/
+Preferences = Wide.service("Preferences", function($http) {
+
+	var o = {
+
+		colors : {
+			background : "#272822"
+		}
+
+	};
+
+	return o;
+});
