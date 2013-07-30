@@ -33,9 +33,7 @@ Wide.directive("canvas", function(Preferences) {
 			}
 
 			$scope.Render = function() {
-
 				context.fillStyle = Preferences.colors.background;
-
 				context.fillRect(0, 0, width, height);
 
 			}
@@ -59,8 +57,8 @@ Wide.directive("canvas", function(Preferences) {
 				$scope.Resize.call($scope, e);
 			});
 
-			$( document ).ready(function() {
-				$scope.Start();
+			$( document ).ready(function(e) {
+				$scope.Start.call($scope);
 			});
 		}
 

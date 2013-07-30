@@ -67,14 +67,24 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 		},
 
 		bind : function(bindData, callback) {
-			bindData = $.extend({
-				shift : false,
-				ctrl : false,
-				alt : false,
-				keyCode : -1
-			}, bindData);
+			var ev = "";
+			if (typeof bindData === "string") {
+				// binds directly if we get a string
+				ev = bindData;
+			}
+			else if (typeof bindData === "object") {
+				// otherwise we have an object we need
+				// to convert before we can use
+				bindData = $.extend({
+					shift : false,
+					ctrl : false,
+					alt : false,
+					keyCode : -1
+				}, bindData);
+	
+				ev = this.convertBindingToEventString(bindData);
+			}
 
-			var ev = this.convertBindingToEventString(bindData);
 
 			EventDistributor.subscribe(ev, callback);
 
@@ -200,9 +210,54 @@ Preferences = Wide.service("Preferences", function($http) {
 
 		colors : {
 			background : "#272822"
+		},
+
+		keyboard_shortcuts : {
+			new_file : "shift=false,ctrl=false,alt=true,keyCode=78"
 		}
 
 	};
 
 	return o;
+});
+
+FileService = Wide.service("FileService", function(File) {
+
+	this.files = {};
+
+	// creates a unique file handle that
+	// will be used for retrieval during 
+	// this session
+	// this way we aren't bound to a required filename
+	this.createFileID = function() {
+		// I am cheap
+		// fight me, God
+		return "" + (new Date()).getTime();
+	}
+
+	this.getFileById = function(id) {
+		
+	}
+
+	// returns a file, old or new
+	this.getFile = function(id) {
+		if (typeof id === 'undefined' || typeof this.files[id] === 'undefined') {
+			// we have to create and return a new file
+			return this.createFile();
+		}
+		else {
+			// otherwise return what we've got
+			return this.files[id];
+		}
+	}
+
+	// creates a new file and returns its id
+	this.createFile = function() {
+		var id = this.createFileID();
+
+		this.files[id] = new File();
+
+		return id;
+	}
+
 });

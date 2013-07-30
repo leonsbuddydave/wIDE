@@ -10,6 +10,7 @@
 		<script src="./js/directives.js"></script>
 		<script src="./js/services.js"></script>
 		<script src="./js/controllers.js"></script>
+		<script src="./js/factories.js"></script>
 
 		<link rel="stylesheet" href="./css/style.css">
 		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
@@ -21,7 +22,7 @@
 
 				<div class="tab-row">
 					<div class="tab" ng-repeat="Tab in Tabs" ng-controller="TabController">
-						{{Tab.name}}
+						{{Tab.title}}
 					</div>
 				</div>
 

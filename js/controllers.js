@@ -4,7 +4,7 @@ MainController = Wide.controller("MainController", function($scope, Keyboard) {
 		keyCode : 13,
 		ctrl : true
 	}, function() {
-		console.log("CONTROL ENTER NIGGA");
+		console.log("CONTROL ENTER YO");
 	});
 
 });
@@ -15,13 +15,29 @@ PaneSetController = Wide.controller("PaneSetController", function($scope, Keyboa
 
 });
 
-PaneController = Wide.controller("PaneController", function($scope) {
+PaneController = Wide.controller("PaneController", function($scope, Tab, Keyboard, Preferences) {
 
-	$scope.Tabs = [{
-		name : "Butt"
-	},{
-		name : "Fish"
-	}];
+	$scope.Tabs = [];
+
+	// creates a new tab
+	// takes an optional file id to open
+	// an existing file
+	$scope.NewTab = function(file_id) {
+		console.log("NEW TAB");
+		if (typeof file_id !== 'string') {
+			// no id, nope
+			$scope.Tabs.push( new Tab() );			
+		}
+		else {
+			// we'll have to load the file, fuck that for now
+		}
+	}
+
+	Keyboard.bind(Preferences.keyboard_shortcuts.new_file, function() {
+		$scope.$apply(function() {
+			$scope.NewTab();
+		});
+	});
 
 });
 
