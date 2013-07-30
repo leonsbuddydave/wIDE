@@ -101,7 +101,8 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 
 			// trim trailing comma because I'm
 			// fastidious and otherwise it looks stupid
-			// this is literally pointless though
+			// this is literally pointless though the bind-matching
+			// will still work without it
 			eventString = eventString.substring(0, eventString.length - 1);
 
 			return eventString;
@@ -213,7 +214,7 @@ Preferences = Wide.service("Preferences", function($http) {
 		},
 
 		keyboard_shortcuts : {
-			new_file : "shift=false,ctrl=false,alt=true,keyCode=78"
+			new_file : "shift=false,ctrl=true,alt=true,keyCode=78"
 		}
 
 	};

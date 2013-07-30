@@ -34,9 +34,7 @@ PaneController = Wide.controller("PaneController", function($scope, Tab, Keyboar
 	}
 
 	Keyboard.bind(Preferences.keyboard_shortcuts.new_file, function() {
-		$scope.$apply(function() {
-			$scope.NewTab();
-		});
+		$scope.$apply($scope.NewTab);
 	});
 
 });
