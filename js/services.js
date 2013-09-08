@@ -34,8 +34,8 @@ EventDistributor = Wide.service("EventDistributor", function() {
 	}
 
 	this.unsubscribe = function(topic) {
-		// man I don't know dude what
-		// fuck off mate
+
+
 	}
 
 	this.dumpEventCacheToConsole = function() {
@@ -93,7 +93,7 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 		convertBindingToEventString : function(bindData) {
 			var eventString = "";
 
-			// compile this shit
+			// compile this
 			$.each(bindData, function(i, e) {
 				eventString += i + "=" + e + ",";
 			});
@@ -228,8 +228,6 @@ FileService = Wide.service("FileService", function(File) {
 	// this session
 	// this way we aren't bound to a required filename
 	this.createFileID = function() {
-		// I am cheap
-		// fight me, God
 		return "" + (new Date()).getTime();
 	}
 
