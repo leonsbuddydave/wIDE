@@ -191,7 +191,7 @@ Keyboard = Wide.service("Keyboard", function(EventDistributor) {
 		s.keyup.call(s, e);
 	});
 
-	// I will stab your glassy dead eyes
+
 	return s;
 });
 
